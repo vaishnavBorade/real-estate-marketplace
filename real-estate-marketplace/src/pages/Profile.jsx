@@ -9,8 +9,8 @@ import {
 import { app } from "../firebase";
 
 export default function Profile() {
-  const fileRef = useRef(null);
   const { currentUser } = useSelector((state) => state.user);
+  const fileRef = useRef(null);
   const [file, setFile] = useState(undefined);
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
@@ -29,7 +29,7 @@ export default function Profile() {
     const uploadtask = uploadBytesResumable(storageRef, file);
 
     uploadtask.on(
-      "state_changed",
+      'state_changed',
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -55,7 +55,7 @@ export default function Profile() {
           type="file"
           ref={fileRef}
           hidden
-          accept="image/*"
+          accept='image/*'
         />
         <img
           onClick={() => fileRef.current.click()}
@@ -63,7 +63,7 @@ export default function Profile() {
           alt="profile"
           className="rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2"
         />
-        <p className="test-sm self-center">
+        <p className="text-sm self-center">
           { fileUploadError ? (
               <span className="text-red-700">Error Image Upload</span>
             ) : filePerc > 0 && filePerc < 100 ? (
